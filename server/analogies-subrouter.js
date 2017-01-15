@@ -6,12 +6,13 @@ const router = express.Router();
 const models = require('../db/models');
 const Analogy = models.Analogy;
 
-router.get('/analogies', function (req, res, next) {
+// /analogies
+router.get('/', function (req, res, next) {
   Analogy.findAll({})
   .then(analogies => res.json(analogies))
   .catch(next);
 });
-
+// /analogies/:id
 router.get('/:id', function (req, res, next) {
   Analogy.findById(id)
   .then(analogy => {
@@ -27,7 +28,8 @@ router.get('/:id', function (req, res, next) {
   .catch(next);
 });
 
-router.post('/analogies', function(req, res, next) {
+// /analogies
+router.post('/', function(req, res, next) {
   Analogy.create(req.body)
   .then(createdAnalogy => res.status(201).json(createdAnalogy))
   .catch(next);

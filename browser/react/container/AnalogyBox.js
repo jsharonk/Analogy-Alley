@@ -10,6 +10,7 @@ export default class AnalogyBox extends Component {
       showAnalogies: false,
       analogies: []
     }
+    // this._fetchAnalogies = this._fetchAnalogies.bind(this);
   }
   componentWillMount() {
     this._fetchAnalogies()
@@ -23,33 +24,7 @@ export default class AnalogyBox extends Component {
   componentWillUnmount() {
     clearInterval(this._timer);
   }
-  // componentDidMount() {
-  //    axios.get('/analogies')
-  //     .then(res => res.data)
-  //     .then(analogy => this.onLoad(convertAlbums(album)));
-  //   // axios.get('/analogies') //ajax call
-  //   //   .then(res => res.data)
-  //   //   .then(analogies => this.setState({
-  //   //     analogy: analogies
-  //   //   });     
-  // }
 
-  // handleAnalogySubmit(analogy) {
-  //   let analogies = this.state.analogy;
-  //   let newAnalogies = analogies.concat([analogy]);
-  //   this.setState({
-  //     analogy: newAnalogies
-  //   });
-
-  //   axios.post('/analogies', {
-  //     data: analogy
-  //   })
-  //   .then(res => res.data)
-  //   .then(analogy => this.setState ({
-  //     analogy: analogy
-  //   }))
-
-  // }
  _deleteAnalogy(analogy) {
    axios.delete('/analogies/${analogy.id}')
    .catch(error => {
@@ -64,11 +39,11 @@ export default class AnalogyBox extends Component {
  }
 
   _fetchAnalogies() {
-    axios.get('/analogies')
+    axios.get('/analogies') 
     .then(res => res.data)
-    .then(analogy => {
+    .then(analogies => {
       this.setState({
-        analogies
+       analogies
       })
     })
     .catch(error => {
@@ -78,7 +53,7 @@ export default class AnalogyBox extends Component {
   _getAnalogies() {
     return this.state.analogies.map((analogy) => {
       return (
-        <Comment
+        <Analogy
           name={analogy.name} 
           content={analogy.content} 
           key={analogy.id}
@@ -108,8 +83,9 @@ export default class AnalogyBox extends Component {
      name, 
      content
    };
-   axios.post('/analogies', {
-     analogy
+   axios.post('/analogies', { //'analogies'
+     name: name,
+     content: content
    })
    .then(res => res.data)
    .then(newAnalogy => {
@@ -127,7 +103,7 @@ export default class AnalogyBox extends Component {
     let analogyNodes;
     if (this.state.showAnalogies) {
       buttonText = 'hide analogies';
-      analogyNodes = <div className="analogy-list">{analogies}</div>;
+      analogyNodes = <div className="analogy">{analogies}</div>;
     }
     return (
         <div className="analogy-box">
@@ -135,7 +111,7 @@ export default class AnalogyBox extends Component {
         <AnalogyForm addAnalogy={this._addAnalogy.bind(this)} />
         <button onClick={this._handleClick.bind(this)}>{buttonText}</button>
         <h4 className="analogy-count">{this._getAnalogiesTitle(analogies.length)}</h4>
-        <div className="analogy-list">
+        <div className="analogy">
           {analogyNodes}
        </div>
       </div>

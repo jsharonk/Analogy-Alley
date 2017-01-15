@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AnalogyForm from './AnalogyForm';
-import AnalogyBox from '../container/AnalogyBox';
+import AnalogyBox from '../containers/AnalogyBox';
 
 export default class Analogy extends Component {
   _handleDelete(event) {
