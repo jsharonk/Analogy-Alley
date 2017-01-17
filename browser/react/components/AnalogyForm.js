@@ -10,31 +10,31 @@ export default class AnalogyForm extends Component {
 
   render() {
     return (
-    
-      <form className="analogy-form" onSubmit={this._handleSubmit.bind(this)}>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="this thing..."
-          ref={(input) => this._name = input}  
-          
-        />
+      <div class="form">
+        <form id="form" className="analogy-form" onSubmit={this._handleSubmit.bind(this)}>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="this thing..."
+            ref={(input) => this._name = input}  
+            
+          />
 
-        <textarea
-          className="form-control"
-          type="text"
-          placeholder="...is like this thing"
-          ref={(textarea) => this._content = textarea}> 
-        </textarea>
-       
-       <div className="form-control">
-       <button type="submit">
-         submit
-       </button>
-       
-       </div>
-      </form>
-
+          <textarea
+            className="form-control"
+            type="text"
+            placeholder="...is like this thing"
+            ref={(textarea) => this._content = textarea}> 
+          </textarea>
+        
+        <div className="form-control">
+        <button type="submit">
+          submit
+        </button>
+        
+        </div>
+        </form>
+      </div>
     );
   }
 
@@ -43,8 +43,7 @@ export default class AnalogyForm extends Component {
     let name = this._name;
     let content = this._content;
     this.props.addAnalogy(name.value, content.value);
-    // this.refs.someForm.getDOMNode().reset();
-   document.getElementById("analogy-form").reset();
+    document.getElementById("form").reset();
 
   }
 

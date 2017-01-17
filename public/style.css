@@ -114,3 +114,26 @@ button {
   width: 50%;
 }
 
+.content {
+  width:  100%;
+  background-color: white;
+}
+
+
+pre.content {
+  width: 100;
+  background-color: seashell;
+  display: inline-block;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  line-break: strict;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+}
+
+.name {
+  text-decoration: overline;
+  border-bottom: 1px solid #000;
+  padding-bottom: 3px;
+}

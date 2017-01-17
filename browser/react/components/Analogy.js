@@ -14,8 +14,9 @@ export default class Analogy extends Component {
       <div className="analogy">
         <strong className="name">{this.props.name}</strong>
         <pre className="content">{this.props.content}</pre>
+
         <p className="id">{this.props.id}</p>
-    
+            
       </div>
     );
   }

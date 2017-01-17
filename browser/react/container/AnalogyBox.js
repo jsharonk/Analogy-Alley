@@ -101,7 +101,8 @@ export default class AnalogyBox extends Component {
    };
    axios.post('/analogies', { //'analogies'
      name: name,
-     content: content
+     content: content 
+     
    })
    .then(res => res.data)
    .then(newAnalogy => {
