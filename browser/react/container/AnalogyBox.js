@@ -3,12 +3,13 @@ import axios from 'axios';
 import Analogy from '../components/Analogy';
 import AnalogyForm from '../components/AnalogyForm';
 
+
 export default class AnalogyBox extends Component {
    constructor(props) {
     super(props);
     this.state = {
       showAnalogies: false,
-      analogies: []
+      analogies: [],
     }
     // this._fetchAnalogies = this._fetchAnalogies.bind(this);
   }
@@ -21,35 +22,55 @@ export default class AnalogyBox extends Component {
       2000
       );
   }
+
+
   componentWillUnmount() {
     clearInterval(this._timer);
   }
 
  _deleteAnalogy(analogy) {
-   axios.delete('/analogies/${analogy.id}')
+   axios.delete(`analogies/${analogy.id}`)
    .catch(error => {
      console.log(error);
    });
+  
    const analogies = [...this.state.analogies];
    const analogyIndex = analogies.indexOf(analogy);
    analogies.splice(analogyIndex, 1);
+
    this.setState({
-     analogies
+     analogies: analogies
    });
  }
 
   _fetchAnalogies() {
     axios.get('/analogies') 
-    .then(res => res.data)
-    .then(analogies => {
+    .then(res => {
+      const analogies = res.data;
       this.setState({
-       analogies
-      })
+        analogies: analogies
+      });
     })
+    // .then(res => res.data)
+    // .then(analogies => {
+    //   this.setState({
+    //    analogies
+    //   })
+     
+    // })
     .catch(error => {
       console.log(error);
     });
   }
+
+  // _getAnalogy(analogyId) {
+  //  axios.get(`/analogies/${analogyId}`)
+  //  .then(res => res.data)
+  //  .then(analogy => this.setState({
+  //    selectedAnalogy: analogy
+  //  }))
+  // }
+
   _getAnalogies() {
     return this.state.analogies.map((analogy) => {
       return (
@@ -99,21 +120,23 @@ export default class AnalogyBox extends Component {
 
   render() {
     const analogies = this._getAnalogies();
-    let buttonText = 'show analogies';
+    let buttonText = 'see all analogies';
     let analogyNodes;
     if (this.state.showAnalogies) {
       buttonText = 'hide analogies';
-      analogyNodes = <div className="analogy">{analogies}</div>;
+      analogyNodes = <div className="analogy">{analogies}></div>
     }
     return (
         <div className="analogy-box">
         <h1>Analogy Alley</h1>
+        <h2>no front door? there's a side door!</h2>
         <AnalogyForm addAnalogy={this._addAnalogy.bind(this)} />
         <button onClick={this._handleClick.bind(this)}>{buttonText}</button>
         <h4 className="analogy-count">{this._getAnalogiesTitle(analogies.length)}</h4>
         <div className="analogy">
           {analogyNodes}
        </div>
+      
       </div>
     );
   }

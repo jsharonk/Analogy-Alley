@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AnalogyForm from './AnalogyForm';
-import AnalogyBox from '../containers/AnalogyBox';
+import AnalogyBox from '../container/AnalogyBox';
 
 export default class Analogy extends Component {
   _handleDelete(event) {
@@ -8,16 +8,16 @@ export default class Analogy extends Component {
     if (confirm('are you sure?')) {
       this.props.onDelete(this.props.analogy);
     }
-    this.props.onDelete(this.props.analogy);
   }
   render () {
     return (
       <div className="analogy">
-        <p className="name">{this.props.name}</p>
+        <pre className="name">{this.props.name}</pre>
         <p className="content">{this.props.content}</p>
+        <p className="id">{this.props.id}</p>
 
         <div className="analogy-footer">
-          <a href="#" className="analogy-footer-delete">
+          <a href="#" className="analogy-footer-delete" onClick={this._handleDelete.bind(this)}>
             delete analogy 
             </a>
         </div>

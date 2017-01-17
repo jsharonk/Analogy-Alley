@@ -27,7 +27,6 @@ export default class AnalogyForm extends Component {
   // }
   _handleSubmit(e) {
     e.preventDefault();
-    console.log('inside handle submit')
     let name = this._name;
     let content = this._content;
     this.props.addAnalogy(name.value, content.value);
@@ -38,18 +37,23 @@ export default class AnalogyForm extends Component {
     
       <form className="analogy-form" onSubmit={this._handleSubmit.bind(this)}>
         <input
+          className="form-control"
           type="text"
           placeholder="this thing..."
           ref={(input) => this._name = input}
           
         />
         <textarea
+          className="form-control"
           type="text"
           placeholder="...is like this thing"
           ref={(textarea) => this._content = textarea}
           > 
         </textarea>
-       <input type="submit" value="submit"/>
+       <input 
+       className="form-control"
+       type="submit" 
+       value="submit"/>
 
       </form>
 
