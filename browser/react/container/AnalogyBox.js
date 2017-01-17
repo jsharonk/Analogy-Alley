@@ -14,6 +14,7 @@ export default class AnalogyBox extends Component {
   }
   componentWillMount() {
     this._fetchAnalogies()
+  
   }
   componentDidMount() {
     this._timer = setInterval(
@@ -25,6 +26,7 @@ export default class AnalogyBox extends Component {
 
   componentWillUnmount() {
     clearInterval(this._timer);
+    
   }
 
  _deleteAnalogy(analogy) {
@@ -69,6 +71,7 @@ export default class AnalogyBox extends Component {
           name={analogy.name} 
           content={analogy.content} 
           key={analogy.id}
+          
           onDelete={this._deleteAnalogy.bind(this)}
           />
       );
@@ -92,7 +95,7 @@ export default class AnalogyBox extends Component {
 
  _addAnalogy(name, content) {
    const analogy = { 
-     //id?
+      //id?
      name, 
      content
    };

@@ -17,6 +17,7 @@ export default class AnalogyForm extends Component {
           type="text"
           placeholder="this thing..."
           ref={(input) => this._name = input}  
+          
         />
 
         <textarea
@@ -25,6 +26,7 @@ export default class AnalogyForm extends Component {
           placeholder="...is like this thing"
           ref={(textarea) => this._content = textarea}> 
         </textarea>
+       
        <div className="form-control">
        <button type="submit">
          submit
@@ -41,6 +43,8 @@ export default class AnalogyForm extends Component {
     let name = this._name;
     let content = this._content;
     this.props.addAnalogy(name.value, content.value);
+    // this.refs.someForm.getDOMNode().reset();
+   document.getElementById("analogy-form").reset();
 
   }
 

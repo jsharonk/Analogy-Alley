@@ -96,6 +96,7 @@ input {
   border-radius: 50px;
   white-space: pre-line;
   overflow-y: hidden;
+  border-width: 5px;
 }
 
 textarea {
@@ -104,7 +105,9 @@ textarea {
   border-radius: 50px;
   white-space: pre-line;
   overflow-y: hidden;
-
+  padding-top: 70px;
+  border-width: 5px;
+  
 }
 
 button {
