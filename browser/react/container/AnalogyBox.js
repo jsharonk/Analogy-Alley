@@ -11,7 +11,6 @@ export default class AnalogyBox extends Component {
       showAnalogies: false,
       analogies: [],
     }
-    // this._fetchAnalogies = this._fetchAnalogies.bind(this);
   }
   componentWillMount() {
     this._fetchAnalogies()
@@ -51,25 +50,17 @@ export default class AnalogyBox extends Component {
         analogies: analogies
       });
     })
-    // .then(res => res.data)
-    // .then(analogies => {
-    //   this.setState({
-    //    analogies
-    //   })
-     
-    // })
     .catch(error => {
       console.log(error);
     });
   }
 
-  // _getAnalogy(analogyId) {
-  //  axios.get(`/analogies/${analogyId}`)
-  //  .then(res => res.data)
-  //  .then(analogy => this.setState({
-  //    selectedAnalogy: analogy
-  //  }))
-  // }
+  //  _handleSubmit(e) {
+  //   e.preventDefault();
+  //   let name = this._name;
+  //   let content = this._content;
+  //   this.state.addAnalogy(name.value, content.value);
+  //  }
 
   _getAnalogies() {
     return this.state.analogies.map((analogy) => {
@@ -100,7 +91,8 @@ export default class AnalogyBox extends Component {
  }
 
  _addAnalogy(name, content) {
-   const analogy = {
+   const analogy = { 
+     //id?
      name, 
      content
    };
@@ -120,19 +112,18 @@ export default class AnalogyBox extends Component {
 
   render() {
     const analogies = this._getAnalogies();
-    let buttonText = 'see all analogies';
+    let buttonText = 'see all';
     let analogyNodes;
     if (this.state.showAnalogies) {
-      buttonText = 'hide analogies';
+      buttonText = 'hide all';
       analogyNodes = <div className="analogy">{analogies}></div>
     }
     return (
         <div className="analogy-box">
         <h1>Analogy Alley</h1>
-        <h2>no front door? there's a side door!</h2>
+        <h4 className="analogy-count">{this._getAnalogiesTitle(analogies.length)}</h4>
         <AnalogyForm addAnalogy={this._addAnalogy.bind(this)} />
         <button onClick={this._handleClick.bind(this)}>{buttonText}</button>
-        <h4 className="analogy-count">{this._getAnalogiesTitle(analogies.length)}</h4>
         <div className="analogy">
           {analogyNodes}
        </div>

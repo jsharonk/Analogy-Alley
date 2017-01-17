@@ -60,33 +60,54 @@ ul {
 
 .form-control {
   width: 50%;
-}
-
-input {
   text-align: center;
+  vertical-align: center;
+ 
 }
 
 ::-webkit-input-placeholder {
- 
+  vertical-align: center; 
     text-align: center;
 }
+
 :-moz-placeholder {
-    /* Firefox 18- */
-
+  vertical-align: center;  
     text-align: center;
 }
+
 ::-moz-placeholder {
-    /* Firefox 19+ */
-
+  vertical-align: center;
     text-align: center;
 }
-:-ms-input-placeholder {
 
+:-ms-input-placeholder {
+  vertical-align: center;
     text-align: center;
 }
 
 img {
   margin: auto;
   width: 100%;
+}
+
+input {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  white-space: pre-line;
+  overflow-y: hidden;
+}
+
+textarea {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  white-space: pre-line;
+  overflow-y: hidden;
+
+}
+
+button {
+  width: 50%;
 }
 

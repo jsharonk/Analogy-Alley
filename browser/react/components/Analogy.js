@@ -12,15 +12,10 @@ export default class Analogy extends Component {
   render () {
     return (
       <div className="analogy">
-        <pre className="name">{this.props.name}</pre>
-        <p className="content">{this.props.content}</p>
+        <strong className="name">{this.props.name}</strong>
+        <pre className="content">{this.props.content}</pre>
         <p className="id">{this.props.id}</p>
-
-        <div className="analogy-footer">
-          <a href="#" className="analogy-footer-delete" onClick={this._handleDelete.bind(this)}>
-            delete analogy 
-            </a>
-        </div>
+    
       </div>
     );
   }

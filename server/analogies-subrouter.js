@@ -24,9 +24,7 @@ router.get('/:id', function (req, res, next) {
     } else {
       res.json(analogy);
     }
-    // req.analogy = analogy;
-    // next();
-    // return null;
+  
 
   })
   .catch(next);
@@ -39,27 +37,5 @@ router.post('/', function(req, res, next) {
   .catch(next);
 });
 
-// router.delete('/analogies/:id', function(req, res, next) {
-//   Analogy.findById(id)
-//   .then(analogy => {
-//     analogy.destroy()
-//   })
-  
-//   .then(() => res.status(204).end())
-//   .catch(next);
-// });
 
-router.get('/:id', function (req, res, next) {
-
-    Analogy.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then(function () {
-            res.redirect('/analogies');
-        })
-        .catch(next);
-
-});
 module.exports=router;
