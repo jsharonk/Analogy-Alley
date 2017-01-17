@@ -10,6 +10,7 @@ export default class AnalogyBox extends Component {
     this.state = {
       showAnalogies: false,
       analogies: [],
+      selectedAnalogy: {}
     }
   }
   componentWillMount() {
@@ -57,22 +58,23 @@ export default class AnalogyBox extends Component {
     });
   }
 
-  //  _handleSubmit(e) {
-  //   e.preventDefault();
-  //   let name = this._name;
-  //   let content = this._content;
-  //   this.state.addAnalogy(name.value, content.value);
-  //  }
 
+  _selectAnalogy (analogyId) {
+    axios.get(`/analogies/${analogyId}`)
+      .then(res => res.data)
+      .then(analogy => this.setState({
+        selectedAnalogy: analogy
+      }));
+  }
   _getAnalogies() {
     return this.state.analogies.map((analogy) => {
       return (
         <Analogy
           name={analogy.name} 
           content={analogy.content} 
-          key={analogy.id}
-          
+          key={analogy.id} //analogy.id          
           onDelete={this._deleteAnalogy.bind(this)}
+          // onClick={() => this._selectAlbum(analogy.id).bind(this)}
           />
       );
     });

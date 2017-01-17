@@ -38,15 +38,27 @@ export default class AnalogyForm extends Component {
     );
   }
 
+  //  _handleSubmit(e) {
+  //   e.preventDefault();
+  //   let name = this._name;
+  //   let content = this._content;
+  //   this.props.addAnalogy(name.value, content.value);
+  //   document.getElementById("form").reset();
+
+  // }
+
+
    _handleSubmit(e) {
     e.preventDefault();
-    let name = this._name;
+    
+      let name = this._name;
     let content = this._content;
     this.props.addAnalogy(name.value, content.value);
-    document.getElementById("form").reset();
+
+    this._name.value= ''
+    this._content.value = '';
 
   }
-
 }
 
 

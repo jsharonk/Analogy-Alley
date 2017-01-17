@@ -37,5 +37,49 @@ router.post('/', function(req, res, next) {
   .catch(next);
 });
 
+router.delete('/:id', function(req, res, next) {
+  Analogy.findById(id)
+  .then(analogy => {
+    analogy.destroy()
+  })
+  
+  .then(() => res.status(204).end())
+  .catch(next);
+});
+
+// router.get('/:id', function (req, res, next) {
+
+//     Analogy.destroy({
+//             where: {
+//                 id: req.params.id
+//             }
+//         })
+//         .then(function () {
+//             res.redirect('/analogies');
+//         })
+//         .catch(next);
+
+// });
+ router.put('/analogies', function(req, res, next) {
+   Analogy.update({
+          name: req.body.name || analogy.name,
+          content: req.body.content || analogy.content},
+          {
+            where: {
+              id: req.params.id
+            }
+        })
+      .then(function(updatedAnalogy) {
+        res.json({
+          message: 'Updated successfully',
+          analogy: updatedAnalogy
+        });
+      })
+    .catch(function(err) {
+      console.log('boop!', err);
+    });
+
+});
+
 
 module.exports=router;

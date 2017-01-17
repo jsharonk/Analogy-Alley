@@ -5,6 +5,7 @@ import AnalogyBox from '../container/AnalogyBox';
 export default class Analogy extends Component {
   _handleDelete(event) {
     event.preventDefault();
+    // this.props.onDelete(this.props.analogy);
     if (confirm('are you sure?')) {
       this.props.onDelete(this.props.analogy);
     }
@@ -14,9 +15,11 @@ export default class Analogy extends Component {
       <div className="analogy">
         <strong className="name">{this.props.name}</strong>
         <pre className="content">{this.props.content}</pre>
-
-        <p className="id">{this.props.id}</p>
-            
+          <div className="analogy-footer">
+           <a href="#" className="analogy-footer-delete" onClick={this._handleDelete.bind(this)}>
+             delete analogy 
+           </a>
+          </div>
       </div>
     );
   }

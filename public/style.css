@@ -112,6 +112,7 @@ textarea {
 
 button {
   width: 50%;
+  margin-bottom: 2cm;
 }
 
 .content {
@@ -135,5 +136,6 @@ pre.content {
 .name {
   text-decoration: overline;
   border-bottom: 1px solid #000;
-  padding-bottom: 3px;
+
 }
+
