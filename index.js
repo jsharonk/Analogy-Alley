@@ -62,9 +62,13 @@ Analogy.sync({})
   //   return Source.sync({});
   // })
   .then(function() {
-    app.listen(3000, function() {
+    var PORT = process.env.PORT || 3000;
+
+    app.listen(PORT, function() {
       // return console.error(err);
       console.log('server listening attentively on 3000!')
     });
   });
   module.exports = app;
+
+  // var port = process.env.PORT || 8000
