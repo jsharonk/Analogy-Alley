@@ -9,15 +9,12 @@ if (process.env.DATABASE_URL) {
     protocol: 'postgres',
     logging:  true //false
   });
-} else {
-  // the application is executed on the local machine
+} 
  const db = new Sequelize(
   'postgres://localhost:5432/analogies', {
     logging: false
   }
 );
-}
-
 
 const Analogy = db.define('analogy', {
   name: {
