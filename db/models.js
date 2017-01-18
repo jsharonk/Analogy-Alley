@@ -13,7 +13,7 @@ const pg = require('pg');
 
 // console.log('process', process.env.DATABASE_URL);
 
-const db = process.env.DATABASE_URL or LOCAL_DB
+const db = process.env.DATABASE_URL || 3000
 client = new pg.Client db
 client.connect()
 
