@@ -1,38 +1,47 @@
 'use strict';
 
-const Sequelize = require('sequelize');
-const pg = require('pg');
+// const Sequelize = require('sequelize');
+
 // const DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
 
-if (process.env.postgresql-cubic-42207) {
-  // the application is executed on Heroku ... use the postgres database
-  sequelize = new Sequelize(process.env.postgresql-cubic-42207, {
-    dialect:  'postgres',
-    protocol: 'postgres',
-    logging:  true //false
-  });
-} else {
-  // the application is executed on the local machine
-  // sequelize = new Sequelize("postgres:///my_db");
+if (!global.hasOwnProperty('db')) {
+  var Sequelize = require('sequelize')
+    , sequelize = null
 
- const db = new Sequelize(
-  'postgres://localhost:5432/analogies', {
-    logging: false
+  if (process.env.HEROKU_POSTGRESQL_RED_URL) {
+    // the application is executed on Heroku ... use the postgres database
+    sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL, {
+      dialect:  'postgres',
+      protocol: 'postgres',
+      port:     match[4],
+      host:     match[3],
+      logging:  true //false
+    })
+  } else {
+     const db = new Sequelize(
+      'postgres://localhost:5432/analogies', {
+        logging: false
+      }
+   );
   }
-);
-}
 
-//  const db = new Sequelize(
-//   'postgres://localhost:5432/analogies', {
-//     logging: false
-//   }
-// );
+  // global.db = {
+  //   Sequelize: Sequelize,
+  //   sequelize: sequelize,
+  //   User:      sequelize.import(__dirname + '/user') 
+    
+    // add your other models here
+  }
 
-// console.log('process', process.env.DATABASE_URL);
+  /*
+    Associations can be defined here. E.g. like this:
+    global.db.User.hasMany(global.db.SomethingElse)
+  */
+// }
 
-// const db = process.env.DATABASE_URL || 3000
-// client = new pg.Client db
-// client.connect()
+// module.exports = global.db
+
+
 
 const Analogy = db.define('analogy', {
   name: {
