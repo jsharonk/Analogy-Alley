@@ -1,12 +1,14 @@
 {
   "name": "analogy-alley",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "index.js",
   "engines": {
     "node": "6.3.1"
   },
   "scripts": {
+    "start":"node index.js",
     "build": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
