@@ -1,7 +1,7 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
+// const DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
 
 
  const db = new Sequelize(
