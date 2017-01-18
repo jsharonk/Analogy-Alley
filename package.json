@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "6.3.1"
+  },
   "scripts": {
     "start": "npm run build & node index.js",
     "build": "webpack -w",
@@ -26,9 +29,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "sequelize": "^3.29.0",
-    "webpack": "^1.14.0", 
-    "analogy-alley": "https://github.com/jsharonk/analogy-alley/tarball"
-
+    "webpack": "^1.14.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

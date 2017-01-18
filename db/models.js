@@ -4,7 +4,8 @@ const Sequelize = require('sequelize');
 
 if (process.env.DATABASE_URL) {
   // the application is executed on Heroku ... use the postgres database
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
+  const db= new Sequelize('postgres://yhtjhkxdmlkzve:1a0ee89930c458502f1c5996812ce2dd96a9486d189e1310b19833ab332007a0@ec2-54-243-185-99.compute-1.amazonaws.com:5432/dboh53q03qs7f8'
+, {
     dialect:  'postgres',
     protocol: 'postgres',
     logging:  true //false
