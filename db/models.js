@@ -12,12 +12,12 @@ const Sequelize = require('sequelize');
 // } 
 
     // var client = new Client(process.env.DATABASE_URL); //something like this should get you running with heroku
-const db = new Sequelize(process.env.DATABASE_URL);
-//  const db = new Sequelize(
-//   'postgres://localhost:5432/analogies', {
-//     logging: false
-//   }
-// );
+// const db = new Sequelize(process.env.DATABASE_URL);
+ const db = new Sequelize(
+  'postgres://localhost:5432/analogies', {
+    logging: false
+  }
+);
 
 const Analogy = db.define('analogy', {
   name: {

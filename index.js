@@ -67,6 +67,5 @@ Analogy.sync({})
       console.log('server listening attentively on 3000!')
     });
   });
-
-
+console.log('process', process.env.DATABASE_URL);
   module.exports = app;
