@@ -27,7 +27,7 @@
     "react-dom": "^15.4.2",
     "sequelize": "^3.29.0",
     "webpack": "^1.14.0", 
-    "analogy-alley": "https://github.com/jsharonk/analogy-alley/master"
+    "analogy-alley": "https://github.com/jsharonk/analogy-alley/tarball/master"
 
   },
   "devDependencies": {
