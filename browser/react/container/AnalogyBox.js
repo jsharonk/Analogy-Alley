@@ -3,18 +3,16 @@ import axios from 'axios';
 import Analogy from '../components/Analogy';
 import AnalogyForm from '../components/AnalogyForm';
 
-
 export default class AnalogyBox extends Component {
-   constructor(props) {
-    super(props);
+   constructor() {
+    super();
     this.state = {
       showAnalogies: false,
       analogies: [],
-      selectedAnalogy: {}
     }
   }
   componentWillMount() {
-    this._fetchAnalogies()
+    this._fetchAnalogies();
   
   }
   componentDidMount() {
@@ -30,15 +28,18 @@ export default class AnalogyBox extends Component {
     
   }
 
- _deleteAnalogy(analogy) {
-   axios.delete(`analogies/${analogy.id}`)
+ _deleteAnalogy(analogyId) {
+   axios.delete(`api/analogies/${analogyId}`)
    .catch(error => {
      console.log(error);
    });
   
-   const analogies = [...this.state.analogies];
-   const analogyIndex = analogies.indexOf(analogy);
-   analogies.splice(analogyIndex, 1);
+  //  const analogies = [...this.state.analogies];
+  //  const analogyIndex = analogies.indexOf(analogy);
+  //  analogies.splice(analogyIndex, 1);
+   const analogies = this.state.analogies.filter(
+     analogy => analogy.id !== analogyId
+   );     
 
    this.setState({
      analogies: analogies
@@ -46,7 +47,7 @@ export default class AnalogyBox extends Component {
  }
 
   _fetchAnalogies() {
-    axios.get('/analogies') 
+    axios.get('/api') 
     .then(res => {
       const analogies = res.data;
       this.setState({
@@ -59,13 +60,13 @@ export default class AnalogyBox extends Component {
   }
 
 
-  _selectAnalogy (analogyId) {
-    axios.get(`/analogies/${analogyId}`)
-      .then(res => res.data)
-      .then(analogy => this.setState({
-        selectedAnalogy: analogy
-      }));
-  }
+  // _selectAnalogy (analogyId) {
+  //   axios.get(`/analogies/${analogyId}`)
+  //     .then(res => res.data)
+  //     .then(analogy => this.setState({
+  //       selectedAnalogy: analogy
+  //     }));
+  // }
   _getAnalogies() {
     return this.state.analogies.map((analogy) => {
       return (
@@ -74,11 +75,16 @@ export default class AnalogyBox extends Component {
           content={analogy.content} 
           key={analogy.id} //analogy.id          
           onDelete={this._deleteAnalogy.bind(this)}
-          // onClick={() => this._selectAlbum(analogy.id).bind(this)}
           />
       );
     });
   }
+  //   _handleDelete(event) {
+  //   event.preventDefault();
+  //   if (confirm('are you sure?')) {
+  //     this.props.onDelete(this.props.analogy);
+  //   }
+  // }
   _getAnalogiesTitle(analogyCount) {
     if(analogyCount === 0) {
       return 'no analogies yet';
@@ -97,11 +103,11 @@ export default class AnalogyBox extends Component {
 
  _addAnalogy(name, content) {
    const analogy = { 
-      //id?
+      
      name, 
      content
    };
-   axios.post('/analogies', { //'analogies'
+   axios.post('/api', { //'analogies'
      name: name,
      content: content 
      
@@ -122,7 +128,7 @@ export default class AnalogyBox extends Component {
     let analogyNodes;
     if (this.state.showAnalogies) {
       buttonText = 'hide all';
-      analogyNodes = <div className="analogy">{analogies}></div>
+      analogyNodes = <div className="analogy-list">{analogies}></div>
     }
     return (
         <div className="analogy-box">
@@ -130,7 +136,7 @@ export default class AnalogyBox extends Component {
         <h4 className="analogy-count">{this._getAnalogiesTitle(analogies.length)}</h4>
         <AnalogyForm addAnalogy={this._addAnalogy.bind(this)} />
         <button onClick={this._handleClick.bind(this)}>{buttonText}</button>
-        <div className="analogy">
+        <div className="analogy-list">
           {analogyNodes}
        </div>
       

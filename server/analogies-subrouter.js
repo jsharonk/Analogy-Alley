@@ -6,13 +6,13 @@ const router = express.Router();
 const models = require('../db/models');
 const Analogy = models.Analogy;
 
-// /analogies
+// /api
 router.get('/', function (req, res, next) {
   Analogy.findAll({where: req.query})
   .then(analogies => res.json(analogies))
   .catch(next);
 });
-// /analogies/:id
+// /api/:id
 router.get('/:id', function (req, res, next) {
   
   Analogy.findById(id)
@@ -30,7 +30,7 @@ router.get('/:id', function (req, res, next) {
   .catch(next);
 });
 
-// /analogies
+// /api 
 router.post('/', function(req, res, next) {
   Analogy.create(req.body)
   .then(createdAnalogy => res.status(201).json(createdAnalogy))
@@ -60,26 +60,26 @@ router.delete('/:id', function(req, res, next) {
 //         .catch(next);
 
 // });
- router.put('/analogies', function(req, res, next) {
-   Analogy.update({
-          name: req.body.name || analogy.name,
-          content: req.body.content || analogy.content},
-          {
-            where: {
-              id: req.params.id
-            }
-        })
-      .then(function(updatedAnalogy) {
-        res.json({
-          message: 'Updated successfully',
-          analogy: updatedAnalogy
-        });
-      })
-    .catch(function(err) {
-      console.log('boop!', err);
-    });
+//  router.put('/', function(req, res, next) {
+//    Analogy.update({
+//           name: req.body.name || analogy.name,
+//           content: req.body.content || analogy.content},
+//           {
+//             where: {
+//               id: req.params.id
+//             }
+//         })
+//       .then(function(updatedAnalogy) {
+//         res.json({
+//           message: 'Updated successfully',
+//           analogy: updatedAnalogy
+//         });
+//       })
+//     .catch(function(err) {
+//       console.log('boop!', err);
+//     });
 
-});
+// });
 
 
 module.exports=router;

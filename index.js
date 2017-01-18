@@ -1,3 +1,5 @@
+'use strict';
+
 const babelRegister = require('babel-register');
 const express = require('express');
 const app = express();
@@ -20,11 +22,34 @@ app.use(bodyParser.json());
 // app.get('/', function(req, res) {
 //   res.redirect('/analogies');
 // });
-app.use('/analogies', require('./server/analogies-subrouter'));
 
-app.get('/', (req, res, next) => {
+app.use('/api', require('./server/analogies-subrouter'));
+
+//spa?
+
+// let handler = (req, res) => res.send(path.join(__dirname, './public/index.html');
+// let routes = ["/", "/analogies", "/analogies/:id"];
+
+// routes.forEach( route => app.get(route, handler));
+
+app.use(function (req, res, next) {
+
+    if (path.extname(req.path).length > 0) {
+        res.status(404).end();
+    } else {
+        next(null);
+    }
+
+});
+
+
+app.get('/*', function(req, res)  {
   res.sendFile(path.join(__dirname, './public/index.html'));
 });
+
+// app.get('/', (req, res, next) => {
+//   res.sendFile(path.join(__dirname, './public/index.html'));
+// });
 
 
 app.use(function (err, req, res, next) {

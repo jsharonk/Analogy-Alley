@@ -90,24 +90,25 @@ img {
   width: 100%;
 }
 
-input {
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
+input.form-control {
+  /*-webkit-border-radius: 50px;
+  -moz-border-radius: 50px;*/
   border-radius: 50px;
   white-space: pre-line;
   overflow-y: hidden;
   border-width: 5px;
+  outline: none;
 }
 
-textarea {
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
+textarea.form-control {
+  /*-webkit-border-radius: 50px;
+  -moz-border-radius: 50px;*/
   border-radius: 50px;
   white-space: pre-line;
   overflow-y: hidden;
   padding-top: 70px;
   border-width: 5px;
-  
+  outline: none;  
 }
 
 button {
@@ -139,3 +140,9 @@ pre.content {
 
 }
 
+
+html { 
+  -ms-word-break: break-all; 
+  word-break: break-all; 
+  word-break: break-word; /* old webkit */ 
+}

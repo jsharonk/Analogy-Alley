@@ -4,10 +4,9 @@ import AnalogyBox from '../container/AnalogyBox';
 import Analogy from './Analogy';
 
 export default class AnalogyForm extends Component {
-// const AnalogyForm = (props) => {
- 
-//  const resetForm = props.resetForm;
-
+  constructor() {
+    super();
+ }
   render() {
     return (
       <div class="form">
