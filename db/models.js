@@ -21,6 +21,7 @@ if (!global.hasOwnProperty('db')) {
       }
    );
   }
+}
 
   // global.db = {
   //   Sequelize: Sequelize,
@@ -53,5 +54,5 @@ const Analogy = db.define('analogy', {
 
 
 module.exports = {
-  Analogy 
+  Analogy
 }
