@@ -25,12 +25,7 @@ app.use(bodyParser.json());
 
 app.use('/api', require('./server/analogies-subrouter'));
 
-//spa?
 
-// let handler = (req, res) => res.send(path.join(__dirname, './public/index.html');
-// let routes = ["/", "/analogies", "/analogies/:id"];
-
-// routes.forEach( route => app.get(route, handler));
 
 app.use(function (req, res, next) {
 

@@ -23,7 +23,6 @@ export default class AnalogyBox extends Component {
       );
   }
 
-
   componentWillUnmount() {
     clearInterval(this._timer);
     

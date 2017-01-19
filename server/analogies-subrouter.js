@@ -13,21 +13,40 @@ router.get('/', function (req, res, next) {
   .catch(next);
 });
 // /api/:id
-router.get('/:id', function (req, res, next) {
-  
-  Analogy.findById(req.params.id)
+router.param('analogyId', function (req, res, next, id) {
+  Analogy.findById(id)
   .then(analogy => {
     if (!analogy) {
-      const err = Error('analogy not found');
+      const err = Error('Artist not found');
       err.status = 404;
-      throw err;
-    } else {
-      res.json(analogy);
-    } 
-
+      throw err
+    }
+    req.analogy = analogy;
+    next();
+    return null; // silences bluebird warning about promises inside of next
   })
   .catch(next);
 });
+
+router.get('/:analogyId', function (req, res) {
+  res.json(req.analogy);
+});
+
+// router.get('/:id', function (req, res, next) {
+  
+//   Analogy.findById(req.params.id)
+//   .then(analogy => {
+//     if (!analogy) {
+//       const err = Error('analogy not found');
+//       err.status = 404;
+//       throw err;
+//     } else {
+//       res.json(analogy);
+//     } 
+
+//   })
+//   .catch(next);
+// });
 
 // /api 
 router.post('/', function(req, res, next) {
