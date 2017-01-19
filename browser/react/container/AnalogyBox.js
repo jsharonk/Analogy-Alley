@@ -13,10 +13,12 @@ export default class AnalogyBox extends Component {
     }
   }
   componentWillMount() {
+    console.log('logging before');
     this._fetchAnalogies();
   
   }
   componentDidMount() {
+    console.log('logging after component did mount')
     this._timer = setInterval(
       () => this._fetchAnalogies(), 
       2000
@@ -49,19 +51,24 @@ export default class AnalogyBox extends Component {
   _fetchAnalogies() {
     axios.get('/api') 
     .then(res => {
+      console.log('rose demands you appear!!')
       const analogies = res.data;
+      analogies.map(function(analogy) {
+        console.log(analogy);
+      });
       this.setState({
         analogies: analogies
       });
     })
     .catch(error => {
+      console.log('in error')
       console.log(error);
     });
   }
 
 
   _fetchAnalogy (analogyId) {
-    axios.get(`/analogies/${analogyId}`)
+    axios.get(`/${analogyId}`)
       .then(res => res.data)
       .then(analogy => this.setState({
         selectedAnalogy: analogy
@@ -69,6 +76,7 @@ export default class AnalogyBox extends Component {
   }
   _getAnalogies() {
     return this.state.analogies.map((analogy) => {
+      console.log('inside get analogies now')
       return (
         <Analogy
           name={analogy.name} 
@@ -102,6 +110,7 @@ export default class AnalogyBox extends Component {
  }
 
  _addAnalogy(name, content) {
+   console.log('moment of truth');
    const analogy = { 
       
      name, 

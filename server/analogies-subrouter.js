@@ -12,25 +12,39 @@ router.get('/', function (req, res, next) {
   .then(analogies => res.json(analogies))
   .catch(next);
 });
-// /api/:id
-router.param('analogyId', function (req, res, next, id) {
-  Analogy.findById(id)
-  .then(analogy => {
-    if (!analogy) {
-      const err = Error('Artist not found');
-      err.status = 404;
-      throw err
-    }
-    req.analogy = analogy;
-    next();
-    return null; // silences bluebird warning about promises inside of next
-  })
-  .catch(next);
-});
+// /api/id
+router.get('/:id', function (req, res, next) {
+    
+    Analogy.findById({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(function (analogy) {
+            res.json(analogy);
+        })
+        .catch(next);
 
-router.get('/:analogyId', function (req, res) {
-  res.json(req.analogy);
 });
+// /api/:id
+// router.param('analogyId', function (req, res, next, id) {
+//   Analogy.findById(id)
+//   .then(analogy => {
+//     if (!analogy) {
+//       const err = Error('Artist not found');
+//       err.status = 404;
+//       throw err
+//     }
+//     req.analogy = analogy;
+//     next();
+//     return null; // silences bluebird warning about promises inside of next
+//   })
+//   .catch(next);
+// });
+
+// router.get('/:analogyId', function (req, res) {
+//   res.json(req.analogy);
+// });
 
 // router.get('/:id', function (req, res, next) {
   
@@ -65,19 +79,7 @@ router.delete('/:id', function(req, res, next) {
   .catch(next);
 });
 
-router.get('/:id', function (req, res, next) {
-    
-    Analogy.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then(function () {
-            res.redirect('/analogies');
-        })
-        .catch(next);
 
-});
  router.put('/', function(req, res, next) {
    Analogy.update({
           name: req.body.name || analogy.name,
