@@ -5,17 +5,17 @@
 // const DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
 
 if (!global.hasOwnProperty('db')) {
-  const Sequelize = require('sequelize')
+  var Sequelize = require('sequelize')
     , sequelize = null
 
   if (process.env.HEROKU_POSTGRESQL_RED_URL) {
     // the application is executed on Heroku ... use the postgres database
-    const db = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL, {
+     glboal.db = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL, {
      
       logging:  true //false
     })
   } else {
-     const db = new Sequelize(
+     global.db = new Sequelize(
       'postgres://localhost:5432/analogies', {
         logging: false
       }
