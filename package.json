@@ -12,6 +12,8 @@
     "use_env_variable": "DATABASE_URL"
   },
   "scripts": {
+    
+    "postinstall": "webpack install",
     "start": "node index.js",
     "build": "webpack -w",
     "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
