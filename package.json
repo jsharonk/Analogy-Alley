@@ -12,11 +12,8 @@
     "use_env_variable": "DATABASE_URL"
   },
   "scripts": {
-    "start": "webpack -w & nodemon --watch server -e js,html index.js",
-    "build": "check-node-version --node '>= 6.7.0' && webpack",
-    "build-watch": "check-node-version --node '>= 6.7.0' && webpack -w",
-    "postinstall": "webpack build", 
-    "heroku-postbuild": "webpack -p --config ./webpack.config.js"
+    "start": "node index.js",
+    "postinstall": "node deploy.js", 
 
   },
   "repository": {
