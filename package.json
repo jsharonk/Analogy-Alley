@@ -12,11 +12,13 @@
     "use_env_variable": "DATABASE_URL"
   },
   "scripts": {
-    "build": "check-node-version --node '>= 6.7.0' && webpack",
-    "build-watch": "check-node-version --node '>= 6.7.0' && webpack -w",
-    "start": "check-node-version --node '>= 6.7.0' && nodemon index.js", 
-    "postinstall" : "webpack"
+    
+    "start": "node index.js",
+    "build": "webpack -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jsharonk/analogy-alley.git"
