@@ -15,7 +15,7 @@
     "build": "check-node-version --node '>= 6.7.0' && webpack",
     "build-watch": "check-node-version --node '>= 6.7.0' && webpack -w",
     "start": "check-node-version --node '>= 6.7.0' && nodemon index.js", 
-    "postinstall" : "node index"
+    "postinstall" : "webpack"
   },
   "repository": {
     "type": "git",
