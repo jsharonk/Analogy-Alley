@@ -14,7 +14,7 @@
   "scripts": {
     
     "start": "node index.js",
-    "build": "webpack -w",
+    "build":"webpack --config webpack-stage.config.js --profile --colors --display-error-details --debug",
     "postinstall":"npm run build"
   },
   "author": "jsk",
@@ -35,8 +35,7 @@
     "pg-hstore": "^2.3.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "sequelize": "^3.29.0",
-    "webpack": "^1.14.0"
+    "sequelize": "^3.29.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
