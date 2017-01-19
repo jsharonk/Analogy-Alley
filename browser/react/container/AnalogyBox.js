@@ -9,6 +9,7 @@ export default class AnalogyBox extends Component {
     this.state = {
       showAnalogies: false,
       analogies: [],
+      selectedAnalogy: {}
     }
   }
   componentWillMount() {
@@ -60,13 +61,13 @@ export default class AnalogyBox extends Component {
   }
 
 
-  // _selectAnalogy (analogyId) {
-  //   axios.get(`/analogies/${analogyId}`)
-  //     .then(res => res.data)
-  //     .then(analogy => this.setState({
-  //       selectedAnalogy: analogy
-  //     }));
-  // }
+  _fetchAnalogy (analogyId) {
+    axios.get(`/analogies/${analogyId}`)
+      .then(res => res.data)
+      .then(analogy => this.setState({
+        selectedAnalogy: analogy
+      }));
+  }
   _getAnalogies() {
     return this.state.analogies.map((analogy) => {
       return (

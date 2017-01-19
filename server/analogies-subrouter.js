@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
 // /api/:id
 router.get('/:id', function (req, res, next) {
   
-  Analogy.findById(id)
+  Analogy.findById(req.params.id)
   .then(analogy => {
     if (!analogy) {
       const err = Error('analogy not found');
@@ -23,8 +23,7 @@ router.get('/:id', function (req, res, next) {
       throw err;
     } else {
       res.json(analogy);
-    }
-  
+    } 
 
   })
   .catch(next);
@@ -47,19 +46,19 @@ router.delete('/:id', function(req, res, next) {
   .catch(next);
 });
 
-// router.get('/:id', function (req, res, next) {
+router.get('/:id', function (req, res, next) {
+    
+    Analogy.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(function () {
+            res.redirect('/analogies');
+        })
+        .catch(next);
 
-//     Analogy.destroy({
-//             where: {
-//                 id: req.params.id
-//             }
-//         })
-//         .then(function () {
-//             res.redirect('/analogies');
-//         })
-//         .catch(next);
-
-// });
+});
  router.put('/', function(req, res, next) {
    Analogy.update({
           name: req.body.name || analogy.name,
