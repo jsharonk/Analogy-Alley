@@ -10,7 +10,7 @@ if (!global.hasOwnProperty('db')) {
 
   if (process.env.HEROKU_POSTGRESQL_RED_URL) {
     // the application is executed on Heroku ... use the postgres database
-     glboal.db = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL, {
+     global.db = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL, {
      
       logging:  true //false
     })
