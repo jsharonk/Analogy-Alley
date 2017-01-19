@@ -47,19 +47,19 @@ router.delete('/:id', function(req, res, next) {
   .catch(next);
 });
 
-router.get('/:id', function (req, res, next) {
+// router.get('/:id', function (req, res, next) {
 
-    Analogy.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        .then(function () {
-            res.redirect('/analogies');
-        })
-        .catch(next);
+//     Analogy.destroy({
+//             where: {
+//                 id: req.params.id
+//             }
+//         })
+//         .then(function () {
+//             res.redirect('/analogies');
+//         })
+//         .catch(next);
 
-});
+// });
  router.put('/', function(req, res, next) {
    Analogy.update({
           name: req.body.name || analogy.name,

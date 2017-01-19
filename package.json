@@ -7,6 +7,7 @@
   "engines": {
     "node": "6.3.1"
   },
+"heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
  "production": {
    "use_env_variable": "DATABASE_URL"
  },
