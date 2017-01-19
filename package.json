@@ -12,9 +12,10 @@
     "use_env_variable": "DATABASE_URL"
   },
   "scripts": {
-    "start": "node index.js",
-    "postinstall": "node deploy.js", 
-
+    "build": "check-node-version --node '>= 6.7.0' && webpack",
+    "build-watch": "check-node-version --node '>= 6.7.0' && webpack -w",
+    "start": "check-node-version --node '>= 6.7.0' && nodemon index.js", 
+    "postinstall" : "node index"
   },
   "repository": {
     "type": "git",
