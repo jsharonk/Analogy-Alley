@@ -15,7 +15,7 @@
         "start": "webpack -w & nodemon --watch server -e js,html index.js",
     "build": "check-node-version --node '>= 6.7.0' && webpack",
     "build-watch": "check-node-version --node '>= 6.7.0' && webpack -w",
-    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
