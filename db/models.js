@@ -1,29 +1,29 @@
 'use strict';
 
-// const Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
 // const DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
 
-if (!global.hasOwnProperty('db')) {
-  var Sequelize = require('sequelize')
-    , sequelize = null
+// if (!global.hasOwnProperty('db')) {
+//   const Sequelize = require('sequelize')
+//     , sequelize = null
 
-  if (process.env.HEROKU_POSTGRESQL_RED_URL) {
-    // the application is executed on Heroku ... use the postgres database
-    const db = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL, {
-      dialect:  'postgres',
-      protocol: 'postgres',
-      // port:     match[4],
-      // host:     match[3],
-      logging:  true //false
-    })
-  } else {
+//   if (process.env.HEROKU_POSTGRESQL_RED_URL) {
+//     // the application is executed on Heroku ... use the postgres database
+//     const db = new Sequelize(process.env.HEROKU_POSTGRESQL_RED_URL, {
+//       dialect:  'postgres',
+//       protocol: 'postgres',
+//       // port:     match[4],
+//       // host:     match[3],
+//       logging:  true //false
+//     })
+//   } else {
      const db = new Sequelize(
       'postgres://localhost:5432/analogies', {
         logging: false
       }
    );
-  }
+  // }
 
   // global.db = {
   //   Sequelize: Sequelize,
@@ -31,7 +31,7 @@ if (!global.hasOwnProperty('db')) {
   //   User:      sequelize.import(__dirname + '/user') 
     
     // add your other models here
-  }
+  // }
 
   /*
     Associations can be defined here. E.g. like this:
