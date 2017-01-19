@@ -13,10 +13,9 @@
   },
   "scripts": {
     
-    "postinstall": "webpack install",
+    "postinstall": "webpack -p --config webpack.prod.config.js --progress",
     "start": "node index.js",
     "build": "webpack -w",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jsk",
