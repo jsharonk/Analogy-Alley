@@ -12,17 +12,19 @@ export default class AnalogyBox extends Component {
       selectedAnalogy: {}
     }
   }
+
   componentWillMount() {
     console.log('logging before');
     this._fetchAnalogies();
   
   }
+
   componentDidMount() {
-    // console.log('logging after component did mount')
-    // this._timer = setInterval(
-    //   () => this._fetchAnalogies(), 
-    //   2000
-    //   );
+    console.log('logging after component did mount')
+    this._timer = setInterval(
+      () => this._fetchAnalogies(), 
+      2000
+      );
   }
 
   componentWillUnmount() {
@@ -42,7 +44,6 @@ export default class AnalogyBox extends Component {
    const analogies = this.state.analogies.filter(
      analogy => analogy.id !== analogyId
    );     
-
    this.setState({
      analogies: analogies
    });
@@ -87,12 +88,7 @@ export default class AnalogyBox extends Component {
       );
     });
   }
-  //   _handleDelete(event) {
-  //   event.preventDefault();
-  //   if (confirm('are you sure?')) {
-  //     this.props.onDelete(this.props.analogy);
-  //   }
-  // }
+
   _getAnalogiesTitle(analogyCount) {
     if(analogyCount === 0) {
       return 'no analogies yet';
@@ -117,8 +113,7 @@ export default class AnalogyBox extends Component {
    };
    axios.post('/api', { //'analogies'
      name: name,
-     content: content 
-     
+     content: content    
    })
    .then(res => res.data)
    .then(newAnalogy => {

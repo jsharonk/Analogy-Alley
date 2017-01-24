@@ -27,7 +27,7 @@ export default class AnalogyForm extends Component {
           </textarea>
         
         <div className="form-control">
-        <button type="submit">
+        <button class="submit" type="submit">
           submit
         </button>
         
