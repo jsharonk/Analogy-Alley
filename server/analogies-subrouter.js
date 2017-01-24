@@ -70,7 +70,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-  Analogy.findById(id)
+  Analogy.findById(req.params.id)
   .then(analogy => {
     analogy.destroy()
   })

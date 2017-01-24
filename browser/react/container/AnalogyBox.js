@@ -18,11 +18,11 @@ export default class AnalogyBox extends Component {
   
   }
   componentDidMount() {
-    console.log('logging after component did mount')
-    this._timer = setInterval(
-      () => this._fetchAnalogies(), 
-      2000
-      );
+    // console.log('logging after component did mount')
+    // this._timer = setInterval(
+    //   () => this._fetchAnalogies(), 
+    //   2000
+    //   );
   }
 
   componentWillUnmount() {
@@ -31,7 +31,7 @@ export default class AnalogyBox extends Component {
   }
 
  _deleteAnalogy(analogyId) {
-   axios.delete(`api/analogies/${analogyId}`)
+   axios.delete(`api/${analogyId}`)
    .catch(error => {
      console.log(error);
    });
@@ -51,7 +51,6 @@ export default class AnalogyBox extends Component {
   _fetchAnalogies() {
     axios.get('/api') 
     .then(res => {
-      console.log('rose demands you appear!!')
       const analogies = res.data;
       analogies.map(function(analogy) {
         console.log(analogy);
@@ -68,7 +67,7 @@ export default class AnalogyBox extends Component {
 
 
   _fetchAnalogy (analogyId) {
-    axios.get(`/${analogyId}`)
+    axios.get(`/api/${analogyId}`)
       .then(res => res.data)
       .then(analogy => this.setState({
         selectedAnalogy: analogy
@@ -76,11 +75,12 @@ export default class AnalogyBox extends Component {
   }
   _getAnalogies() {
     return this.state.analogies.map((analogy) => {
-      console.log('inside get analogies now')
+      console.log('inside get analogies now ', analogy.id);
       return (
         <Analogy
           name={analogy.name} 
           content={analogy.content} 
+          id={analogy.id}
           key={analogy.id} //analogy.id          
           onDelete={this._deleteAnalogy.bind(this)}
           />
@@ -110,7 +110,6 @@ export default class AnalogyBox extends Component {
  }
 
  _addAnalogy(name, content) {
-   console.log('moment of truth');
    const analogy = { 
       
      name, 

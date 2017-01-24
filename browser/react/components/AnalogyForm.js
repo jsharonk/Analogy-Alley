@@ -9,7 +9,7 @@ export default class AnalogyForm extends Component {
  }
   render() {
     return (
-      <div class="form">
+      <div className="form">
         <form id="form" className="analogy-form" onSubmit={this._handleSubmit.bind(this)}>
           <input
             className="form-control"
